@@ -13,8 +13,7 @@ class ProjectsApi extends Api {
 	 * @return {Object} Promise
 	 */
 	getProjects() {
-		let endpoint = this.BASE_URL + '/project';
-		return axios.get(endpoint);
+		return axios.get(this.BASE_URL + '/project');
 	}
 
 	/**
