@@ -22,7 +22,7 @@ class Flux extends Alt {
 	}
 
 	render(route) {
-		return this._resolver.render(route ,this);
+		return this._resolver.render(route, this);
 	}
 }
 

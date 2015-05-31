@@ -1,7 +1,5 @@
 'use strict';
-
-//Remove once the api's are done
-import data from 'data/projects.json';
+import ProjectsApi from 'api/projects';
 
 class ProjectActions {
 	constructor() {
@@ -9,15 +7,19 @@ class ProjectActions {
 	}
 
 	fetch() {
-		const promise = (resolve) => {
-			this.alt.getActions('requests').start();
-			setTimeout(() => {
-				this.actions.fetchSuccess(data.projects);
-				this.alt.getActions('requests').success();
+		const self = this;
+		const projectsApi = new ProjectsApi();
+
+		const request = (resolve, reject) => {
+			projectsApi.getProjects().then((response) => {
+				this.actions.fetchSuccess(response.data);
 				return resolve();
-			}, 300);
-		}
-		this.alt.resolve(promise);
+			}).catch((err) => {
+				return reject(err);
+			});
+		};
+
+		this.alt.resolve(request);
 	}
 }
 

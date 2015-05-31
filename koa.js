@@ -26,15 +26,19 @@ app.use(require('koa-compressor')());
 app.use(favicon(__dirname + '/app/assets/favicon.ico'));
 
 app.use(mount('/assets', function *() {
-	yield send(this, this.path, { root:__dirname + '/app/assets' });
+	yield send(this, this.path, { root: __dirname + '/app/assets' });
 }));
 
 app.use(mount('/build', function *() {
-	yield send(this, this.path, { root:__dirname + '/app/build' });
+	yield send(this, this.path, { root: __dirname + '/app/build' });
 }));
 
 app.use(mount('/api', require('./server/api/app')));
 
 app.use(require('./router'));
+
+process.on('unhandledRejection', function (err) {
+	console.error(err.stack);
+});
 
 module.exports = app;

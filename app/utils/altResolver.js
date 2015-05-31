@@ -39,7 +39,8 @@ class AltResolver {
 				content = { body: Iso.render(app, flux.flush()) };
 			} catch (err) {
 				const app = React.renderToString(React.createElement(ErrorPage));
-				content = { body: Iso.render(app, flux.flush()) }
+				content = { body: Iso.render(app, flux.flush()) };
+				console.log(err); //Helpful for server side debugging
 			}
 			return content;
 		}
