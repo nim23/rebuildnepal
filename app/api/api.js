@@ -2,17 +2,17 @@ class Api {
 	constructor() {
 
 	if (process.env.BROWSER) {
-		this.BASE_URL = '/api';
+		this.API_ENDPOINT = '/api';
 		return;
 	}
 
 	if (process.env.NODE_ENV === 'prod') {
 		//TODO: update this when we have a prod environment
-		this.BASE_URL = 'http://localhost:10100/api';
+		this.API_ENDPOINT = 'http://localhost:10100/api';
 		return;
 	}
 
-	this.BASE_URL = 'http://localhost:10100/api';
+	this.API_ENDPOINT = 'http://localhost:10100/api';
 	}
 }
 
